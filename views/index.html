@@ -25,7 +25,7 @@
           <h4><a href="/api">Read My API Documentation</a></h4>
         </div>
       </div>
-
+      <!-- Profile Template -->
       <div id="profileTarget" class="">
         <script id="profile-template" type="text/x-handlebars-template">
           <h3>{{profile.name}}</h3>
@@ -36,15 +36,24 @@
           </p>
         </script>
       </div>
+      <h3>Board Game Selection</h3>
+      <!-- BoardGame Template -->
+      <div id="boardGameTarget" class="">
+        <script id="boardGame-template" type="text/x-handlebars-template">
+          {{#each boardgames}}
+            <hr>
+            <p>
+              <b>{{name}}</b>
+              Players Required: {{minPlayers}} - {{maxPlayers}} <br>
+              Average Playtime in Minutes: {{timeToPlay}} <br>
+              Year of Release: {{releaseYear}} <br>
+              Genre: {{gameType}}
+              <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id={{_id}}>Delete</button>
+            </p>
+          {{/each}}
+        </script>
+      </div>
+
     </div>
-    <hr>
-    <!-- <div id="boardGameTarget" class="">
-      <script id="boardGame-template" type="text/x-handlebars-template">
-        {{#each boardgames}}
-
-        {{/each}}
-      </script>
-    </div> -->
-
   </body>
 </html>

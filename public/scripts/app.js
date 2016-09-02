@@ -1,5 +1,6 @@
 console.log("Sanity Check: JS is working!");
 var template;
+var gameTemplate;
 var $profile;
 var $gamesList;
 var profile;
@@ -18,6 +19,18 @@ $(document).ready(function(){
     error: profileHandleError
   });
 
+  $gamesList = $('#boardGameTarget');
+
+  var sourceGames = $('#boardGame-template').html();
+  gameTemplate = Handlebars.compile(sourceGames);
+
+  $.ajax({
+    method: 'GET',
+    url: '/api/boardgames',
+    success: bgHandleSuccess,
+    error: bgHandleError
+  });
+
 
 });
 function renderProfile (){
@@ -34,4 +47,20 @@ function profileHandleSuccess(json){
 function profileHandleError(e){
   console.log('uh oh');
   $('#profileTarget').text('Failed to load profile data.');
+}
+
+function renderBoardGame(){
+  $gamesList.empty();
+  var gamesHtml = gameTemplate({boardgames: allGames});
+  $gamesList.append(gamesHtml);
+}
+
+function bgHandleSuccess(json){
+  allGames = json;
+  renderBoardGame();
+}
+
+function bgHandleError(e){
+  console.log('uh oh');
+  $('#boardGameTarget').text('Failed to load game data.');
 }
