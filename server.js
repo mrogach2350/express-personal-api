@@ -57,6 +57,17 @@ app.get('/api', function api_index(req, res) {
   })
 });
 
+app.get('/api/profile', function api_index(req, res){
+  db.Profile.find({})
+    .exec(function(err, books){
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
+      res.json(books);
+    });
+});
+
 /**********
  * SERVER *
  **********/
