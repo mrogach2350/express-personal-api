@@ -53,12 +53,12 @@ app.get('/api', function api_index(req, res) {
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Personal Data"},
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "POST", path: "/api/boardgames", description: "E.g. Create a new campsite"} // CHANGE ME
     ]
   })
 });
 
-app.get('/api/profile', function api_index(req, res){
+app.get('/api/profile', function api_profile(req, res){
   var profile = {
       name: 'Michael E. Rogachevsky',
       githubLink: 'https://github.com/mrogach2350',
@@ -71,6 +71,17 @@ app.get('/api/profile', function api_index(req, res){
       {name:'Crookshanks', type: 'Cat', breed: 'Domestic Shorthair', owner: 'Andrew'}]
   }
       res.json(profile);
+});
+
+app.get('/api/boardgames', function api_boardgame(req, res){
+  db.BoardGame.find({})
+    .exec(function(err, boardgames){
+      if (err){
+        res.status(500).send(err);
+        return;
+      }
+      res.json(boardgames);
+    });
 });
 
 
