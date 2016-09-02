@@ -26,7 +26,7 @@
         </div>
       </div>
       <!-- Profile Template -->
-      <div id="profileTarget" class="">
+      <div id="profileTarget" class="col-md-8 col-md-offset-2">
         <script id="profile-template" type="text/x-handlebars-template">
           <h3>{{profile.name}}</h3>
           <p>
@@ -36,14 +36,14 @@
           </p>
         </script>
       </div>
-      <h3>Board Game Selection</h3>
+      <h3 class="col-md-8 col-md-offset-2">Board Game Selection</h3>
       <!-- BoardGame Template -->
-      <div id="boardGameTarget" class="">
+      <div id="boardGameTarget" class="col-md-8 col-md-offset-2">
         <script id="boardGame-template" type="text/x-handlebars-template">
           {{#each boardgames}}
             <hr>
             <p>
-              <b>{{name}}</b>
+              <b>{{name}}</b> <br>
               Players Required: {{minPlayers}} - {{maxPlayers}} <br>
               Average Playtime in Minutes: {{timeToPlay}} <br>
               Year of Release: {{releaseYear}} <br>
