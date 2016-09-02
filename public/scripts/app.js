@@ -31,6 +31,15 @@ $(document).ready(function(){
     error: bgHandleError
   });
 
+  $gamesList.on('click', '.deleteBtn', function(){
+    $.ajax({
+      method: 'DELETE',
+      url: '/api/boardgames/' +$(this).attr('data-id'),
+      success: deleteGameSuccess,
+      error: deleteGameError
+    });
+  });
+
 
 });
 function renderProfile (){
@@ -63,4 +72,24 @@ function bgHandleSuccess(json){
 function bgHandleError(e){
   console.log('uh oh');
   $('#boardGameTarget').text('Failed to load game data.');
+}
+
+function deleteGameSuccess(json){
+  var game = json;
+  var gameId = game._id;
+
+  for(var index = 0; index < allGames.length; index ++){
+    console.log(allGames);
+    if(allGames[index]._id === gameId) {
+      console.log(allGames[index]);
+      allGames.splice(index, 1);
+      console.log(allGames);
+      break;
+    }
+  }
+  renderBoardGame();
+}
+
+function deleteGameError() {
+  // console.log(e);
 }

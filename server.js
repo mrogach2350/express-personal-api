@@ -84,6 +84,15 @@ app.get('/api/boardgames', function api_boardgame(req, res){
     });
 });
 
+app.delete('/api/boardgames/:id', function(req, res){
+  console.log(req.params);
+  var gameId = req.params.id;
+
+  db.BoardGame.findOneAndRemove({_id: gameId}, function (err, deletedGame){
+    res.json(deletedGame);
+  });
+});
+
 
 /**********
  * SERVER *
