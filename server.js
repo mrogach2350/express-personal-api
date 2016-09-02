@@ -34,6 +34,7 @@ app.use(express.static('public'));
  */
 
 app.get('/', function homepage(req, res) {
+  console.log(__dirname + '/views/index.html');
   res.sendFile(__dirname + '/views/index.html');
 });
 
@@ -62,7 +63,7 @@ app.get('/api/profile', function api_index(req, res){
       name: 'Michael E. Rogachevsky',
       githubLink: 'https://github.com/mrogach2350',
       githubProfileImage: "https://avatars1.githubusercontent.com/u/19850983?v=3&s=460",
-      personalSiteLink: "mrogach2350.github.io",
+      personalSiteLink: "https://mrogach2350.github.io/",
       currentCity: 'San Francisco',
       pets: [{name:'Nate', type: 'Dog', breed: 'Shepard Mix', owner: 'Jim'},
       {name:'Stella', type: 'Dog', breed: 'Lab', owner: 'Rachel'},
