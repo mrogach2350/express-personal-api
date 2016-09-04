@@ -84,8 +84,27 @@ app.get('/api/boardgames', function api_boardgame(req, res){
     });
 });
 
+app.post('/api/boardgames', function (req, res){
+  var newGame = new db.BoardGame({
+    name: req.body.title,
+    minPlayers: req.body.minPlayers,
+    maxPlayers: req.body.maxPlayers,
+    timeToPlay: req.body.playTime,
+    singlePlayerOption: false,
+    releaseYear: req.body.year,
+    gameType: req.body.type
+  });
+  newGame.save(function(err, game){
+    if(err){
+      return console.log("create error " + err);
+    }
+    console.log("created  ", game.name);
+    res.json(game);
+  });
+});
+
 app.delete('/api/boardgames/:id', function(req, res){
-  console.log(req.params);
+  // console.log(req.params);
   var gameId = req.params.id;
 
   db.BoardGame.findOneAndRemove({_id: gameId}, function (err, deletedGame){
